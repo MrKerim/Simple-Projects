@@ -37,6 +37,15 @@ else:
 # to track
 initBB = None
 
+
+
+##############################################################################################################
+##############################################################################################################
+##############################################################################################################
+##############################################################################################################
+##############################################################################################################
+
+
 # if a video path was not supplied, grab the reference to the web cam
 if not args.get("video", False):
 	print("[INFO] starting video stream...")
@@ -97,6 +106,7 @@ while True:
 		# sure you press ENTER or SPACE after selecting the ROI)
 		initBB = cv2.selectROI("Frame", frame, fromCenter=False,
 			showCrosshair=True)
+		print("initBB[0]: ",initBB[0])
 		# start OpenCV object tracker using the supplied bounding box
 		# coordinates, then start the FPS throughput estimator as well
 		tracker.init(frame, initBB)
