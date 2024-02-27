@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <title>My First Webpage</title>
+    <style>
+        .grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        img{
+            width: 100%;
+            aspect-ratio: 1/1;
+            display: block;
+            object-position: center;
+            object-fit: cover;
+        }
+
+        .blur-load{
+            background-size: cover;
+            background-position: center;
+        }
+
+        .blur-load.loaded > img{
+            opacity: 1;
+        }
+
+        .blur-load > img{
+            opacity: 0;
+            transition: opacity 200ms ease-in-out;
+        }
+
+    </style>
+    <script>
+        const blurDivs = document.querySelectorAll('.blur-load');
+        blurDivs.forEach((blurDiv) => {
+        const img = blurDiv.querySelector('img');
+
+        function loaded(){
+        blurDiv.classList.add("loaded")
+        }
+
+         if(img.complete){
+            loaded();}
+        else{
+        img.addEventListener('load', loaded);
+        }
+});
+    </script>
+  </head>
+  <body style="margin: 0;">
+    <div class="grid">
+        <div class="blur-load" style="background-image: url(images/smallbernard-hermant-3wAOGF3iV9k-unsplash.jpg);">
+            <img src="images/bernard-hermant-3wAOGF3iV9k-unsplash.jpg?nocache=<%= Date.now() %>" loading="lazy">
+        </div>
+        <div class="blur-load" style="background-image: url(images/smallbernard-hermant-6ftZuO_-b64-unsplash.jpg);">
+            <img src="images/bernard-hermant-6ftZuO_-b64-unsplash.jpg?nocache=<%= Date.now() %>" loading="lazy">
+        </div>
+        <div class="blur-load" style="background-image: url(images/smallbernard-hermant-nHRXNv2qeDE-unsplash.jpg);">
+            <img src="images/bernard-hermant-nHRXNv2qeDE-unsplash.jpg?nocache=<%= Date.now() %>" loading="lazy">
+        </div>
+        <div class="blur-load" style="background-image: url(images/smalldivjot-ratra-UQ_61DeiHss-unsplash.jpg);">
+            <img src="images/divjot-ratra-UQ_61DeiHss-unsplash.jpg?nocache=<%= Date.now() %>" loading="lazy">
+        </div>
+        <div class="blur-load" style="background-image: url(images/smalljohnathan-kaufman-Cje-Nqr2U8o-unsplash.jpg);">
+            <img src="images/johnathan-kaufman-Cje-Nqr2U8o-unsplash.jpg?nocache=<%= Date.now() %>" loading="lazy">
+        </div>
+        <div class="blur-load" style="background-image: url(images/smalllinda-gerbec-7OcFNJFZ8pc-unsplash.jpg);">
+            <img src="images/linda-gerbec-7OcFNJFZ8pc-unsplash.jpg?nocache=<%= Date.now() %>" loading="lazy">
+        </div>
+        <div class="blur-load" style="background-image: url(images/smallmichael-dziedzic-gEN5Btvf2Eg-unsplash.jpg);">
+            <img src="images/michael-dziedzic-gEN5Btvf2Eg-unsplash.jpg?nocache=<%= Date.now() %>" loading="lazy">
+        </div>
+        <div class="blur-load" style="background-image: url(images/smallmorgan-housel-X_fbh4Utwk4-unsplash.jpg);">
+            <img src="images/morgan-housel-X_fbh4Utwk4-unsplash.jpg?nocache=<%= Date.now() %>" loading="lazy">
+        </div>
+        <div class="blur-load" style="background-image: url(images/smallnordwood-themes-ubIWo074QlU-unsplash.jpg);">
+            <img src="images/nordwood-themes-ubIWo074QlU-unsplash.jpg?nocache=<%= Date.now() %>" loading="lazy">
+        </div>
+        <div class="blur-load" style="background-image: url(images/smallpexels-myicahel-tamburini-1554740.jpg);">
+            <img src="images/pexels-myicahel-tamburini-1554740.jpg?nocache=<%= Date.now() %>" loading="lazy">
+        </div>
+        <div class="blur-load" style="background-image: url(mages/smallrodrigo-soares-hrO9ZbmGD00-unsplash.jpg);">
+            <img src="images/rodrigo-soares-hrO9ZbmGD00-unsplash.jpg?nocache=<%= Date.now() %>" loading="lazy">
+        </div>
+        <div class="blur-load" style="background-image: url(images/smalltengyart-Q78W18T-dss-unsplash.jpg);">
+            <img src="images/tengyart-Q78W18T-dss-unsplash.jpg?nocache=<%= Date.now() %>" loading="lazy">
+        </div>
+        <div class="blur-load" style="background-image: url(images/smalltrail-5yOnGsKUNGw-unsplash.jpg);">
+            <img src="images/trail-5yOnGsKUNGw-unsplash.jpg?nocache=<%= Date.now() %>" loading="lazy">
+        </div>
+
+    </div>
+</body>
