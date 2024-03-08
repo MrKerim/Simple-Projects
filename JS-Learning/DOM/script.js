@@ -1,6 +1,14 @@
 let shakeThreshold = 2; // Adjust based on testing for sensitivity
 let lastAcceleration = { x: null, y: null, z: null };
 
+if ('DeviceMotionEvent' in window) {
+    // Add devicemotion event listener
+    console.log("Device motion is supported on your device.");
+} else {
+    // Handle the lack of support for devicemotion event
+    console.log("Device motion is not supported on your device.");
+}
+
 window.addEventListener('devicemotion', function(e) {
     let acceleration = e.accelerationIncludingGravity;
     if (!acceleration.x && !acceleration.y && !acceleration.z) return;
