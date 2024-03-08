@@ -1,43 +1,35 @@
-let shakeThreshold = 2; // Adjust based on testing for sensitivity
-let lastAcceleration = { x: null, y: null, z: null };
+//Tutorial is on YouTube(https://www.youtube.com/@moinsite)
 
-if ('DeviceMotionEvent' in window) {
-    // Add devicemotion event listener
-    console.log("Device motion is supported on your device.");
-} else {
-    // Handle the lack of support for devicemotion event
-    console.log("Device motion is not supported on your device.");
-}
-
-window.addEventListener('devicemotion', function(e) {
-    let acceleration = e.accelerationIncludingGravity;
-    if (!acceleration.x && !acceleration.y && !acceleration.z) return;
-
-    if (lastAcceleration.x !== null) {
-        let deltaX = Math.abs(lastAcceleration.x - acceleration.x);
-        let deltaY = Math.abs(lastAcceleration.y - acceleration.y);
-        let deltaZ = Math.abs(lastAcceleration.z - acceleration.z);
-
-        // Log deltas to find an appropriate threshold
-        console.log(deltaX, deltaY, deltaZ);
-
-        if (deltaX + deltaY + deltaZ > shakeThreshold) {
-            console.log("Shake detected");
-            rollDice();
+function handleOrientation(event) {
+    let alpha = event.alpha
+    let beta = event.beta
+    let gamma = event.gamma
+  
+    let cube = document.querySelector('.cube');
+    cube.style.transform = 'rotateX(' + beta + 'deg) rotateY(' + gamma + 'deg) rotateZ(' + alpha + 'deg)';
+  
+  }
+  
+  
+  async function requestDeviceOrientation() {
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+      //iOS 13+ devices
+      try {
+        const permissionState = await DeviceOrientationEvent.requestPermission()
+        if (permissionState === 'granted') {
+          window.addEventListener('deviceorientation', handleOrientation)
+        } else {
+          alert('Permission was denied')
         }
+      } catch (error) {
+        alert(error)
+      }
+    } else if ('DeviceOrientationEvent' in window) {
+      //non iOS 13+ devices
+      console.log("not iOS");
+      window.addEventListener('deviceorientation', handleOrientation)
+    } else {
+      //not supported
+      alert('nicht unterstützt')
     }
-
-    lastAcceleration.x = acceleration.x;
-    lastAcceleration.y = acceleration.y;
-    lastAcceleration.z = acceleration.z;
-});
-
-function rollDice() {
-    // Placeholder for your dice rolling logic
-    console.log("Dice rolled!");
-    // Example: Show a random number between 1 and 6
-    let result = Math.floor(Math.random() * 6) + 1;
-    console.log("Result: ", result);
-    document.getElementById("heading").innerText = result;
-}
-
+  }
