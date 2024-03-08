@@ -1,4 +1,4 @@
-let shakeThreshold = 15; // Adjust based on testing for sensitivity
+let shakeThreshold = 2; // Adjust based on testing for sensitivity
 let lastAcceleration = { x: null, y: null, z: null };
 
 window.addEventListener('devicemotion', function(e) {
@@ -28,7 +28,7 @@ function rollDice() {
     // Placeholder for your dice rolling logic
     console.log("Dice rolled!");
     // Example: Show a random number between 1 and 6
-    let result = 10;
+    let result = Math.floor(Math.random() * 6) + 1;
     console.log("Result: ", result);
     document.getElementById("heading").innerText = result;
 }

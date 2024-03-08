@@ -28,7 +28,7 @@ function rollDice() {
     // Placeholder for your dice rolling logic
     console.log("Dice rolled!");
     // Example: Show a random number between 1 and 6
-    let result = 10;
+    let result = Math.floor(Math.random() * 6) + 1;
     console.log("Result: ", result);
     document.getElementById("heading").innerText = result;
 }
